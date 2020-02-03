@@ -1,27 +1,51 @@
 package chapter1._2;
 
+import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class _1_2_2 {
-    private static boolean isIntersected(double[] a, double[] b){
-        assert a[0] <= a[1];
-        assert b[0] <= b[1];
-        return !(a[1] <= b[0] || b[1] <= a[0]);
+    public static class Interval1D{
+        private double lo, hi;
+        public Interval1D(double lo, double hi){
+            if(lo > hi){
+                throw new IllegalArgumentException();
+            }
+
+            this.lo = lo;
+            this.hi = hi;
+        }
+
+        public double length(){
+            return hi-lo;
+        }
+
+        public boolean contains(double x){
+            return (x >= lo && x < hi);
+        }
+
+        public boolean intersect(Interval1D that){
+            return !(hi <= that.lo || that.hi <= lo);
+        }
+
+        public void draw(){
+            StdDraw.line(lo, 0, hi, 0);
+        }
+
+        public String toString(){
+            return lo + "..." + hi;
+        }
     }
 
     public static void printIntersectInterval(int N){
-        double[][] intervals = new double[N][2];
+        Interval1D[] intervals = new Interval1D[N];
         for(int i=0; i<N; i++){
-            intervals[i][0] = StdIn.readDouble();
-            intervals[i][1] = StdIn.readDouble();
+            intervals[i] = new Interval1D(StdIn.readDouble(), StdIn.readDouble());
         }
         for(int i = 0; i < N; i++){
             for(int j = i+1; j < N; j++){
-                if(isIntersected(intervals[i], intervals[j])){
-                    StdOut.printf("%f...%f\t%f...%f\n",
-                            intervals[i][0], intervals[i][1],
-                            intervals[j][0], intervals[j][1]);
+                if(intervals[i].intersect(intervals[j])){
+                    StdOut.print(intervals[i] + "\t" + intervals[j] + "\n");
                 }
             }
         }
