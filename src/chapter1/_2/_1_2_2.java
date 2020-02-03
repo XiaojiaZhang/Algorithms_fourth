@@ -7,6 +7,15 @@ import edu.princeton.cs.algs4.StdOut;
 public class _1_2_2 {
     public static class Interval1D{
         private double lo, hi;
+
+        public double getLo(){
+            return lo;
+        }
+
+        public double getHi(){
+            return hi;
+        }
+
         public Interval1D(double lo, double hi){
             if(lo > hi){
                 throw new IllegalArgumentException();
