@@ -1,5 +1,7 @@
 package chapter1._2;
 
+import edu.princeton.cs.algs4.StdOut;
+
 public class _1_2_13 {
     public static class Date{
         private final int month;
@@ -9,6 +11,13 @@ public class _1_2_13 {
             month = m;
             day = d;
             year = y;
+        }
+
+        public Date(String date){
+            String[] fields = date.split("/");
+            month = Integer.parseInt(fields[0]);
+            day = Integer.parseInt(fields[1]);
+            year = Integer.parseInt(fields[2]);
         }
 
         public int month(){
@@ -47,12 +56,20 @@ public class _1_2_13 {
             this.amount = amount;
         }
 
+        // Example "Truing 5/22/1939 11.99"
+        public Transaction(String transaction){
+            String[] fields = transaction.split("\\s+");
+            who = fields[0];
+            when = new Date(fields[1]);
+            amount = Double.parseDouble(fields[2]);
+        }
+
         public String who(){ return who; }
         public Date when(){ return when; }
         public double amount(){ return amount; }
 
         public String toString(){
-            return "who:" + who + "\t" + "when:" + "\t" + "amount:" + amount;
+            return "who:" + who + "\t" + "when:" + when + "\t" + "amount:" + amount;
         }
 
         public boolean equals(Object that){
@@ -64,5 +81,10 @@ public class _1_2_13 {
             if(Math.abs(amount - that_.amount) > 0.00001) return false;
             return true;
         }
+    }
+
+    public static void main(String[] args){
+        Transaction a = new Transaction("Turing 5/22/1939   11.99");
+        StdOut.println(a);
     }
 }
