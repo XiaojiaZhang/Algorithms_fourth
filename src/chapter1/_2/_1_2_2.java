@@ -21,7 +21,7 @@ public class _1_2_2 {
         }
 
         public boolean contains(double x){
-            return (x >= lo && x < hi);
+            return (x >= lo && x <= hi);
         }
 
         public boolean intersect(Interval1D that){
