@@ -5,12 +5,22 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class _1_2_9 {
     private static class Counter{
+        private String id;
+        public Counter(String id){
+            this.id = id;
+        }
+
         private int num = 0;
-        public void add(){
+        public void increment(){
             num += 1;
         }
-        public int count(){
+
+        public int tally(){
             return num;
+        }
+
+        public String toString(){
+            return id + " " + num;
         }
     }
 
@@ -22,14 +32,14 @@ public class _1_2_9 {
 
         if(high - low == 1){
             if(array[low] == N){
-                count.add();
+                count.increment();
             }
             return;
         }
         else{
             int mid = low + (high - low) / 2;
             if(array[mid] == N){
-                count.add();
+                count.increment();
             }
             BinarySearch(array, N, low, mid, count);
             BinarySearch(array, N, mid+1, high, count);
@@ -37,9 +47,9 @@ public class _1_2_9 {
     }
 
     public static int BinarySearch(int[] array, int N){
-        Counter count = new Counter();
+        Counter count = new Counter("BinarySearch");
         BinarySearch(array, N, 0, array.length, count);
-        return count.count();
+        return count.tally();
     }
 
     public static void main(String[] args){
