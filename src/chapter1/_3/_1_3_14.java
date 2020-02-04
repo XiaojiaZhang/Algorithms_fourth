@@ -1,6 +1,5 @@
 package chapter1._3;
 
-import edu.princeton.cs.algs4.ResizingArrayQueue;
 import edu.princeton.cs.algs4.StdOut;
 
 public class _1_3_14 {
