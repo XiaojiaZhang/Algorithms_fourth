@@ -18,8 +18,8 @@ public class Node<Item> {
         return next;
     }
 
-    public Item getItem(){
-        return item;
+    public void SetNext(Node<Item> next){
+        this.next = next;
     }
 
     public void display(){
