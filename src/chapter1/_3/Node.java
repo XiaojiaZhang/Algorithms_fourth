@@ -22,6 +22,10 @@ public class Node<Item> {
         this.next = next;
     }
 
+    public Item getItem(){
+        return item;
+    }
+
     public void display(){
         Node<Item> current = this;
         while (current != null){
