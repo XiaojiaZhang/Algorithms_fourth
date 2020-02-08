@@ -1,6 +1,5 @@
 package chapter1._4;
 
-import com.sun.xml.internal.org.jvnet.fastinfoset.sax.FastInfosetReader;
 import edu.princeton.cs.algs4.StdOut;
 
 public class _1_4_10 {
