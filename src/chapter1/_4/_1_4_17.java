@@ -42,12 +42,12 @@ public class _1_4_17 {
 
     public static void main(String[] args){
         DrawPoint dw = new DrawPoint();
-        StdDraw.setPenColor(Color.RED);
+//        StdDraw.setPenColor(Color.RED);
         StdDraw.setPenRadius(0.01);
         for(int i = 1000; i < 100000000; i*=2){
             double time = Test(i);
             StdOut.printf("%7d\t%5.3f\n", i, time);
-            dw.drawPoint(i, time);
+            dw.drawPoint(i, time, Color.RED);
         }
     }
 

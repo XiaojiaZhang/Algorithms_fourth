@@ -44,10 +44,10 @@ public class _1_4_12 {
 
     public static void main(String[] args){
         DrawPoint dp = new DrawPoint();
-        StdDraw.setPenColor(Color.RED);
+//        StdDraw.setPenColor(Color.RED);
         StdDraw.setPenRadius(0.01);
         for(int N = 100; N < 100000; N+=1000){
-            dp.drawPoint(N, Test(N));
+            dp.drawPoint(N, Test(N), Color.RED);
         }
         StdOut.println("end!");
     }
