@@ -8,9 +8,11 @@ import java.util.LinkedList;
 public class DrawPoint {
     private class Point{
         private double x, y;
-        public Point(double x, double y){
+        private Color color;
+        public Point(double x, double y, Color color){
             this.x = x;
             this.y = y;
+            this.color = color;
         }
     }
 
@@ -37,19 +39,20 @@ public class DrawPoint {
         else{
             p_y = (p.y - minY) / (maxY - minY) * 0.8 + 0.1;
         }
-        return new Point(p_x, p_y);
+        return new Point(p_x, p_y, p.color);
     }
 
     private void drawAllPoints(){
         Point scale_point;
         for(Point p:points){
             scale_point = scalePoint(p);
+            StdDraw.setPenColor(scale_point.color);
             StdDraw.point(scale_point.x, scale_point.y);
         }
     }
 
-    public void drawPoint(double x, double y){
-        points.add(new Point(x, y)); //添加位置点
+    public void drawPoint(double x, double y, Color color){
+        points.add(new Point(x, y, color)); //添加位置点
         if(x > maxX) {
             maxX = x;
             scaleChange = true;
@@ -68,7 +71,8 @@ public class DrawPoint {
         }
 
         if(!scaleChange){ //直接绘制当前点
-            Point scale_point = scalePoint(new Point(x, y));
+            StdDraw.setPenColor(color);
+            Point scale_point = scalePoint(new Point(x, y, color));
             StdDraw.point(scale_point.x, scale_point.y);
         }
         else{//由于比例调整,重新绘制所有点
@@ -83,7 +87,7 @@ public class DrawPoint {
         StdDraw.setPenRadius(0.005);
         for(int x = 0; x < 100; x++){
             StdDraw.pause(500);
-            p.drawPoint(x, x*x);
+            p.drawPoint(x, x*x, Color.RED);
         }
     }
 }
