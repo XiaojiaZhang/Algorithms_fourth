@@ -18,12 +18,12 @@ public class _1_4_3 {
 
     public static void main(String[] args){
         DrawPoint draw = new DrawPoint();
-        StdDraw.setPenColor(Color.RED);
+//        StdDraw.setPenColor(Color.RED);
         StdDraw.setPenRadius(0.005);
         for(int N = 250; N < 100000; N += N){
             double time = timeTrial(N);
             StdOut.printf("%7d %5.1f\n", N, time);
-            draw.drawPoint(N, time);
+            draw.drawPoint(N, time, Color.RED);
         }
     }
 }
