@@ -1,7 +1,13 @@
 package Chapter2;
 
+import chapter1._3.DoubleNodeList;
+import chapter1._4.DrawPoint;
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.Stopwatch;
+
+import java.awt.*;
 
 public class InsertionSort extends ArraySort{
     //循环不变式
@@ -19,6 +25,17 @@ public class InsertionSort extends ArraySort{
             for(int j = i; j > 0 && less(a[j], a[j-1]); j--){
                 exch(a, j, j-1);
             }
+        }
+    }
+
+    public static void sort2(Comparable[] a){
+        int N = a.length;
+        for(int i = 1; i < N; i++){
+            int j;
+            for(j = i; j > 0 && less(a[i], a[j-1]); j--);
+            Comparable tmp = a[i];
+            System.arraycopy(a, j, a, j+1, i-j);
+            a[j] = tmp;
         }
     }
 
@@ -46,12 +63,42 @@ public class InsertionSort extends ArraySort{
         return array;
     }
 
+    private static double[] Test(int N){
+        Double[] array1 = new Double[N];
+        Double[] array2 = new Double[N];
+        for(int i = 0; i < N; i++){
+            double random = StdRandom.uniform(-100000.0, 100000.0);
+            array1[i] = random;
+            array2[i] = random;
+        }
+        Stopwatch sw = new Stopwatch();
+        sort(array1);
+        double t1 = sw.elapsedTime();
+        sw = new Stopwatch();
+        sort2(array2);
+        double t2 = sw.elapsedTime();
+        return new double[]{t1, t2};
+    }
+
     public static void main(String[] args){
 //        String[] array = new String[]{"2", "1", "4", "5", "3", "6"};
 //        sort(array);
 //        assert isSorted(array);
 
-        double[] array2 = getRandomArray(100, -100.0, 100.0);
-        sortShow(array2);
+//        double[] array2 = getRandomArray(100, -100.0, 100.0);
+//        Double[] arrayD = new Double[array2.length];
+//        for(int i = 0; i < arrayD.length; i++)
+//            arrayD[i] = array2[i];
+//        sort2(arrayD);
+//        assert isSorted(arrayD);
+//        sortShow(array2);
+        DrawPoint dp = new DrawPoint();
+        StdDraw.setPenRadius(0.01);
+        for(int i = 100; i < 10000; i+=100){
+            double[] time = Test(i);
+            dp.drawPoint(i, time[0], Color.RED);
+            dp.drawPoint(i, time[1], Color.GREEN);
+        }
+        StdOut.println("end!");
     }
 }
